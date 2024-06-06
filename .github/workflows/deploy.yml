@@ -25,7 +25,7 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: artifacts
-        path: dist/angular-machine/
+        path: dist/machine_test/
 
   deploy:
     name: Development to S3 and CloudFront
@@ -38,7 +38,7 @@ jobs:
     - uses: actions/download-artifact@v3
       with:
         name: artifacts
-        path: dist/angular-machine/
+        path: dist/machine_test/
 
     - uses: aws-actions/configure-aws-credentials@v2
       with:
@@ -47,6 +47,6 @@ jobs:
         #aws-region: ${{ secrets.AWS_DEFAULT_REGION }}
 
     - name: S3 Sync
-      run: aws s3 sync dist/angular-machine/ s3://angular-machine
+      run: aws s3 sync dist/machine_test/ s3://angular-machine
 
 
